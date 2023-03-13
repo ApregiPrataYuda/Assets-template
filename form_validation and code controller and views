@@ -1,0 +1,20 @@
+   
+   //code for controler
+   $this->form_validation->set_rules('kategori', 'kategori', 'required');
+    $this->form_validation->set_message('required', '{field} Belum di isi');
+    $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+    if ($this->form_validation->run() == FALSE) {
+      $this->template->load('template','Kategori/Kategori_tambah');
+    }else {
+      echo 'success';
+    }
+    
+    
+    
+    
+      //code for views
+       <div class="col-md-7  mt-2 <?= form_error('kategori') ? '' : null ?>">
+            <label for="kategori"><span>  Kategori*</span> </label>
+            <input type="text" class="form-control" value="<?= set_value('kategori') ?>" name="kategori" id="kategori" placeholder="kategori  Kategori">
+            <small class="text-danger" style="font-style: italic "><span class="badge badge-danger"><?= form_error('kategori') ?></span></small>
+          </div>
