@@ -1,0 +1,21 @@
+ public function add()
+  {
+
+    $this->form_validation->set_rules('kategori', 'kategori', 'required');
+    $this->form_validation->set_rules('description', 'description', 'required');
+    $this->form_validation->set_message('required', '{field} Belum di isi');
+    $this->form_validation->set_error_delimiters('<span class="help-block">', '</span>');
+    if ($this->form_validation->run() == FALSE) {
+      $this->template->load('template','Kategori/Kategori_tambah');
+    }else {
+      $post = $this->input->post(null, TRUE);
+       if (isset($_POST['add'])) {
+        $this->Kategori_model->add($post);
+        if ($this->db->affected_rows() > 0) {
+          $this->session->set_flashdata('pesan', 'Save success');
+           redirect('Kategori_products');
+        }
+       }else {
+         echo 'Tidak ada yang di imputkan';
+       }
+    }
